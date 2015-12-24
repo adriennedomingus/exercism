@@ -2,18 +2,18 @@ VERSION = 1
 
   class Squares
 
+    attr_reader :numbers
+
     def initialize(number)
       @numbers = 0.upto(number)
     end
 
     def square_of_sums
-      sum = @numbers.reduce { |sum, number| sum + number}
-      sum ** 2
+      numbers.reduce { |sum, number| sum + number} ** 2
     end
 
     def sum_of_squares
-      squares = @numbers.reduce { |sum, number| sum + number ** 2}
-      squares
+      numbers.reduce { |sum, number| sum + number ** 2}
     end
 
     def difference
