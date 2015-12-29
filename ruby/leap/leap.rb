@@ -3,11 +3,7 @@ class Year
   VERSION = 1
 
   def self.leap?(year)
-    if every_four_not_100(year) || every_400(year)
-      "Yes, #{year} is a leap year"
-    else
-      "No, #{year} is not a leap year"
-    end
+    true if every_four_not_100(year) || every_400(year)
   end
 
   def self.every_four_not_100(year)

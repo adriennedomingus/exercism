@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 gem 'minitest', '>= 5.0.0'
 require 'minitest/autorun'
-require 'minitest/pride'
 require_relative 'leap'
 
 # Test data version:
@@ -17,37 +16,28 @@ class Date
 end
 
 class YearTest < Minitest::Test
-
-  # def test_initial_leap_with_true
-  #   assert Year.initial_leap(1996)
-  # end
-  #
-  # def test_initial_leap_with_false
-  #   refute Year.initial_leap(1997)
-  # end
-
   def test_leap_year
-    assert_equal 'Yes, 1996 is a leap year', Year.leap?(1996)
+    assert Year.leap?(1996), 'Yes, 1996 is a leap year'
   end
 
   def test_non_leap_year
-    assert_equal 'No, 1997 is not a leap year', Year.leap?(1997)
+    refute Year.leap?(1997), 'No, 1997 is not a leap year'
   end
 
   def test_non_leap_even_year
-    assert_equal 'No, 1998 is not a leap year', Year.leap?(1998)
+    refute Year.leap?(1998), 'No, 1998 is not a leap year'
   end
 
   def test_century
-    assert_equal 'No, 1900 is not a leap year', Year.leap?(1900)
+    refute Year.leap?(1900), 'No, 1900 is not a leap year'
   end
 
   def test_fourth_century
-    assert_equal 'Yes, 2400 is a leap year', Year.leap?(2400)
+    assert Year.leap?(2400), 'Yes, 2400 is a leap year'
   end
 
   def test_y2k
-    assert_equal 'Yes, 2000 is a leap year', Year.leap?(2000)
+    assert Year.leap?(2000), 'Yes, 2000 is a leap year'
   end
 
   # Problems in exercism evolve over time,
