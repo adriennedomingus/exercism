@@ -3,7 +3,7 @@ class Year
   VERSION = 1
 
   def self.leap?(year)
-    true if every_four_not_100(year) || every_400(year)
+    every_four_not_100(year) || every_400(year)
   end
 
   def self.every_four_not_100(year)

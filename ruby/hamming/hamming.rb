@@ -4,6 +4,7 @@ class Hamming
 
   def self.compute(strand1, strand2)
     verify_strands(strand1, strand2)
+
     strand1, strand2 = strand1.chars, strand2.chars
     diff = 0
     strand1.each_with_index do |char, index|
