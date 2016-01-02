@@ -5,12 +5,9 @@ class Hamming
   def self.compute(strand1, strand2)
     verify_strands(strand1, strand2)
 
-    strand1, strand2 = strand1.chars, strand2.chars
-    diff = 0
-    strand1.each_with_index do |char, index|
-      diff += 1 if strand1[index] != strand2[index]
+    strand1.length.times.count do |diff|
+       strand1[diff] != strand2[diff]
     end
-    diff
   end
 
   def self.verify_strands(strand1, strand2)
