@@ -5,7 +5,7 @@ class Phrase
   attr_reader :phrase
 
   def initialize(phrase)
-    @phrase = phrase.downcase.gsub(/[^a-z0-9\s']/i, ' ')
+    @phrase = phrase.downcase.gsub(/[^a-z0-9\s']/, ' ')
   end
 
   def word_count
@@ -18,7 +18,7 @@ class Phrase
   end
 
   def remove_quotations(word)
-    if word.start_with?("'")
+    if word.start_with?("'") && word.end_with?("'")
       word.gsub!("'", "")
     end
   end
