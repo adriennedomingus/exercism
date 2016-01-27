@@ -7,16 +7,9 @@ class Series
 
   def slices(slice_size)
     raise ArgumentError if slice_size > series.length
-    all_slices = []
-    series.each_with_index do |character, index|
-      unless series[index + (slice_size - 1)] == nil
-        slice = []
-        until slice.length == slice_size
-          slice << series[(index += 1) - 1 ]
-        end
-        all_slices << slice
-      end
+    number_of_slices = series.length - slice_size
+    (0..number_of_slices).to_a.map do |start_index|
+      series[start_index, slice_size]
     end
-    all_slices
   end
 end
