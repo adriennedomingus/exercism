@@ -45,10 +45,9 @@ class Crypto
 
   def normalize_ciphertext
     normalized = []
-    segments = (0..size - 1).to_a
     characters = ciphertext.chars
-    segment_size = (characters.length.to_f / segments.length.to_f).ceil
-    segments.map do |segment|
+    segment_size = (characters.length.to_f / size.to_f).ceil
+    size.times do
       if characters.length % segment_size == 0
         normalized.unshift(characters.pop(segment_size).join)
       else
