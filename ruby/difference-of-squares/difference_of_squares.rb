@@ -9,11 +9,11 @@ VERSION = 1
     end
 
     def square_of_sums
-      numbers.reduce { |sum, number| sum + number} ** 2
+      numbers.reduce(:+) ** 2
     end
 
     def sum_of_squares
-      numbers.reduce { |sum, number| sum + number ** 2}
+      numbers.map { |number| number ** 2 }.reduce(:+)
     end
 
     def difference
