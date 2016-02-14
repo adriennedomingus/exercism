@@ -81,11 +81,8 @@ class Say
       if TENS[number]
         TENS[number]
       else
-        split = number.to_s.chars
-        english = [SMALL_NUMBERS[split[-1].to_i]]
-        split[-1] = "0"
-        split = split.join.to_i
-        english.unshift(TENS[split]).join("-")
+        english = [SMALL_NUMBERS[number.to_s.chars[-1].to_i]]
+        english.unshift(TENS[((number / 10) * 10)]).join("-")
       end
     end
   end
