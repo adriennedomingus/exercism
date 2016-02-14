@@ -68,8 +68,6 @@ class Say
       ""
     elsif SMALL_NUMBERS[number]
       SMALL_NUMBERS[number]
-    elsif TENS[number]
-      TENS[number]
     elsif number < 100
       tens(number)
     else
