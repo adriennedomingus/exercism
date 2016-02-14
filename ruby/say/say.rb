@@ -53,49 +53,42 @@ class Say
       until split.empty?
         in_threes << split.pop(3)
       end
-      mapped = in_threes.map do |section|
+      in_threes.map do |section|
         hundreds(section.join.to_i)
-      end
-      with_delimeter = mapped.map.with_index do |section, index|
+      end.map.with_index do |section, index|
         if section != ""
           "#{section} #{DELIMETERS[index]}"
         end
+      end.delete_if { |char| char == " " || char == nil}.reverse.join(" ").rstrip
+    end
+  end
+
+  def hundreds(number)
+    if number == 000
+      ""
+    elsif SMALL_NUMBERS[number]
+      SMALL_NUMBERS[number]
+    elsif TENS[number]
+      TENS[number]
+    elsif number < 100
+      tens(number)
+    else
+      split = number.to_s.chars
+      "#{SMALL_NUMBERS[split[0].to_i]} hundred #{tens(split[1..-1].join.to_i)}"
+    end
+  end
+
+  def tens(number)
+    unless number == 00
+      if TENS[number]
+        TENS[number]
+      else
+        split = number.to_s.chars
+        english = [SMALL_NUMBERS[split[-1].to_i]]
+        split[-1] = "0"
+        split = split.join.to_i
+        english.unshift(TENS[split]).join("-")
       end
-      with_delimeter.delete_if { |char| char == " " || char == nil}.reverse.join(" ").rstrip
-    end
-  end
-
-  def hundreds(numb)
-    if numb == 000
-      ""
-    elsif SMALL_NUMBERS[numb]
-      SMALL_NUMBERS[numb]
-    elsif TENS[numb]
-      TENS[numb]
-    elsif numb < 100
-      tens(numb)
-    else
-      num = []
-      split = numb.to_s.chars
-      num.unshift(SMALL_NUMBERS[split[0].to_i])
-      num << "hundred"
-      num << tens(split[1..-1].join.to_i)
-      num.delete_if { |char| char == ""}.join(" ")
-    end
-  end
-
-  def tens(numb)
-    if numb == 00
-      ""
-    elsif TENS[numb]
-      TENS[numb]
-    else
-      split = numb.to_s.chars
-      num = []
-      num << SMALL_NUMBERS[split[-1].to_i]
-      split[-1] = "0"
-      split = split.join.to_i
-      num.unshift(TENS[split]).join("-")
     end
   end
 end
