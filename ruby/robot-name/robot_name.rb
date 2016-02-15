@@ -3,16 +3,16 @@ class Robot
   attr_reader :name
 
   def initialize
-    @name = name_generator
+    @name = NameGenerator.new.robot_name
   end
 
   def reset
-    @name = name_generator
+    @name = NameGenerator.new.robot_name
   end
+end
 
-  private
-
-  def name_generator
+class NameGenerator
+  def robot_name
     letters = ('A'..'Z').to_a.sample(2)
     numbers = (0..9).to_a.sample(3)
     (letters + numbers).join
