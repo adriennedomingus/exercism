@@ -17,16 +17,16 @@ class Complement
   end
 
   def self.verify_dna(strand)
-    strand.split('').each do |nucleotide|
-      if nucleotide != 'A' && nucleotide != 'G' && nucleotide != 'C' && nucleotide != 'T'
+    strand.chars.each do |nucleotide|
+      if !complements.keys.include?(nucleotide)
         raise ArgumentError.new
       end
     end
   end
 
   def self.verify_rna(strand)
-    strand.split('').each do |nucleotide|
-      if nucleotide != 'A' && nucleotide != 'G' && nucleotide != 'C' && nucleotide != 'U'
+    strand.chars.each do |nucleotide|
+      if !complements.values.include?(nucleotide)
         raise ArgumentError.new
       end
     end
