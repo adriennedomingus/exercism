@@ -23,10 +23,6 @@ class Scrabble
   end
 
   def score_letter(letter)
-    if POINTS[letter.upcase]
-      POINTS[letter.upcase]
-    else
-      0
-    end
+    POINTS[letter.upcase] || 0
   end
 end
