@@ -8,7 +8,7 @@ class Scrabble
             "Y" => 4, "Z" => 10,}
 
   def initialize(word)
-    @word = word
+    @word = word.to_s
   end
 
   def self.score(word)
@@ -16,14 +16,10 @@ class Scrabble
   end
 
   def score
-    if word == nil || word == ""
-      0
-    else
-      letters = word.chars
-      letters.map do |letter|
-        score_letter(letter)
-      end.reduce(:+)
-    end
+    letters = word.chars
+    letters.map do |letter|
+      score_letter(letter)
+    end.reduce(:+) || 0
   end
 
   def score_letter(letter)
