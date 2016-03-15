@@ -12,7 +12,7 @@ Hamming = function(strand1, strand2) {
       }
     }
     return counter
-  } 
+  }
 }
 
 module.exports = Hamming;
