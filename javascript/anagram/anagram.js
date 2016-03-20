@@ -3,23 +3,28 @@ Anagram = function(word) {
     if (typeof options === 'string') {
       options = Array.prototype.slice.call(arguments);
     }
-    var matches = [];
     var sortedWord = word.toLowerCase().split("").sort()
-    var sortedOptions = []
-    for (var i = 0; i < options.length; i++) {
-      if (word.toLowerCase() === options[i].toLowerCase()) {
-        options.splice(i, 1)
-      }
-    }
-    for (var i = 0; i < options.length; i++) {
-      sortedOptions.push(options[i].toLowerCase().split("").sort());
-    }
+    var sortedOptions = this.sortOptions(options);
+    this.removeSelf(options);
+    return this.findMatches(sortedWord, sortedOptions, options);
+  }
+
+  this.findMatches = function(sortedWord, sortedOptions, options) {
+    var matches = [];
     for (var i = 0; i < options.length; i++) {
       if (this.compareContents(sortedWord, sortedOptions[i])) {
         matches.push(options[i]);
       }
     }
-    return matches;
+    return matches
+  }
+
+  this.removeSelf = function(options) {
+    for (var i = 0; i < options.length; i++) {
+      if (word.toLowerCase() === options[i].toLowerCase()) {
+        options.splice(i, 1)
+      }
+    }
   }
 
   this.compareContents = function(array1, array2) {
@@ -33,6 +38,14 @@ Anagram = function(word) {
     }
     return true;
   }
+
+  this.sortOptions = function(options){
+    var sortedOptions = []
+    for (var i = 0; i < options.length; i++) {
+      sortedOptions.push(options[i].toLowerCase().split("").sort());
+    }
+    return sortedOptions
+  }
 }
 
-module.exports = Anagram
+module.exports = Anagram;
