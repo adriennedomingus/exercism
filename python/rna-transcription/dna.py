@@ -1,7 +1,5 @@
 def to_rna(strand):
-    split = list(strand)
-    converted = [conversions()[letter] for letter in split]
+    converted = [CONVERSIONS[letter] for letter in strand]
     return ''.join(converted)
 
-def conversions():
-    return {'G': 'C', 'C': 'G', 'T': 'A', 'A': 'U'}
+CONVERSIONS =  {'G': 'C', 'C': 'G', 'T': 'A', 'A': 'U'}
