@@ -8,8 +8,7 @@ class Brackets
     }
 
   def self.paired?(string)
-    brackets = []
-    string.each_char do |bracket|
+    leftovers = string.chars.each_with_object([]) do |bracket, brackets|
       if PAIRS.keys.include?(bracket)
         brackets << bracket
       elsif PAIRS.values.include?(bracket)
@@ -17,6 +16,6 @@ class Brackets
         return false unless PAIRS[brackets.pop] == bracket
       end
     end
-    brackets.empty?
+    leftovers.empty?
   end
 end
