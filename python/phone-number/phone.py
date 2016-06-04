@@ -1,6 +1,8 @@
 import re
 
-class Phone():
+class Phone:
+
+    NON_NUMERIC = re.compile(r'[^\d]+')
 
     def __init__(self, phone_number):
         self.number = self.clean_and_validate(phone_number)
@@ -11,8 +13,7 @@ class Phone():
         return validate
 
     def clean(self, phone_number):
-        non_numeric = re.compile(r'[^\d]+')
-        return non_numeric.sub('', phone_number)
+        return self.NON_NUMERIC.sub('', phone_number)
 
     def validate(self, phone_number):
         if len(phone_number) == 11 and phone_number[0] == "1":
