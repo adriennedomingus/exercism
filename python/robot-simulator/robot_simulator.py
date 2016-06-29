@@ -1,68 +1,41 @@
-class NORTH:
-    @staticmethod
-    def turn_right(self):
-        return EAST
+NORTH, EAST, SOUTH, WEST = (0, 1), (1, 0), (0, -1), (-1, 0)
 
-    @staticmethod
-    def turn_left(self):
-        return WEST
+RIGHT = { NORTH: EAST,
+          EAST: SOUTH,
+          SOUTH: WEST,
+          WEST: NORTH }
 
-    @staticmethod
-    def advance(self, x, y):
-        return (x, y + 1)
-
-class EAST:
-    @staticmethod
-    def turn_right(self):
-        return SOUTH
-
-    @staticmethod
-    def turn_left(self):
-        return NORTH
-
-    @staticmethod
-    def advance(self, x, y):
-        return (x + 1, y)
-
-class SOUTH:
-    @staticmethod
-    def turn_right(self):
-        return WEST
-
-    @staticmethod
-    def turn_left(self):
-        return EAST
-
-    @staticmethod
-    def advance(self, x, y):
-        return (x, y - 1)
-
-class WEST:
-    @staticmethod
-    def turn_right(self):
-        return NORTH
-
-    @staticmethod
-    def turn_left(self):
-        return SOUTH
-
-    @staticmethod
-    def advance(self, x, y):
-        return (x - 1, y)
+LEFT = { NORTH: WEST,
+         EAST: NORTH,
+         SOUTH: EAST,
+         WEST: SOUTH }
 
 class Robot:
-    def __init__(self, direction=NORTH, x = 0, y = 0):
+
+    def __init__(self, bearing = NORTH, x = 0, y = 0):
         self.coordinates = (x, y)
-        self.bearing = direction
+        self.bearing = bearing
 
     def turn_right(self):
-        self.bearing = self.bearing.turn_right(self.bearing)
+        self.bearing = RIGHT[self.bearing]
 
     def turn_left(self):
-        self.bearing = self.bearing.turn_left(self.bearing)
+        self.bearing = LEFT[self.bearing]
+
+    def advance_x(self):
+        starting_x = self.coordinates[0]
+        change_in_x = self.bearing[0]
+        return starting_x + change_in_x
+
+    def advance_y(self):
+        starting_y = self.coordinates[1]
+        change_in_y = self.bearing[1]
+        return starting_y + change_in_y
 
     def advance(self):
-        self.coordinates = self.bearing.advance(self.bearing, self.coordinates[0], self.coordinates[1])
+        new_x = self.advance_x()
+        new_y = self.advance_y()
+        self.coordinates = (new_x, new_y)
 
     def simulate(self, directions):
         for direction in directions:
