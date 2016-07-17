@@ -1,16 +1,10 @@
 class RunLengthEncoding
   def self.encode(input)
-    result = []
-    input.chars.each do |character|
-      if result.last != character
-        result << 1
-        result << character
-      else
-        result[-2] += 1
-      end
-    end
-    result.delete(1)
-    result.join
+    encoded = input.chars.chunk{|i| i}.map do |kind, array|
+      [array.length, kind]
+    end.flatten
+    encoded.delete(1)
+    encoded.join
   end
 
   def self.decode(input)
