@@ -22,8 +22,7 @@ class WordTest(unittest.TestCase):
     def test_complicated_word_scores_more(self):
         self.assertEqual(22, score("quirky"))
 
-    def test_scores_are_case_insensitive(self):
-        self.assertEqual(41, score("OxyphenButazone"))
+        
 
 if __name__ == '__main__':
     unittest.main()
