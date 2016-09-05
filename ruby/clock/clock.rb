@@ -14,13 +14,10 @@ class Clock
     the_minutes = time % 60
     if the_hour > 23
       the_hour -= 24
-      "#{"%02d" % the_hour}:#{"%02d" % the_minutes}"
     elsif the_hour < 0
       the_hour += 24
-      "#{"%02d" % the_hour}:#{"%02d" % the_minutes}"
-    else
-      "#{"%02d" % the_hour}:#{"%02d" % the_minutes}"
     end
+    "#{"%02d" % the_hour}:#{"%02d" % the_minutes}"
   end
 
   def +(minutes_to_add)
