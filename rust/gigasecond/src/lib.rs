@@ -1,7 +1,8 @@
 use chrono::{DateTime, Utc, Duration};
 
+const BILLION: i64 = 1_000_000_000;
+
 // Returns a Utc DateTime one billion seconds after start.
 pub fn after(start: DateTime<Utc>) -> DateTime<Utc> {
-    let gigasecond = Duration::seconds(1_000_000_000);
-    start + gigasecond
+    start + Duration::seconds(BILLION)
 }
