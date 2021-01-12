@@ -1,2 +1,4 @@
 .DS_Store
 *.version
+php/vendor/*
+php/phpunit.phar
